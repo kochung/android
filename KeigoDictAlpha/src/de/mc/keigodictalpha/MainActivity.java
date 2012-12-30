@@ -8,14 +8,11 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-// for zoho test
-import java.sql.DriverManager;
-import java.sql.Connection;
-import java.sql.Statement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Properties;
-
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
 
 public class MainActivity extends Activity {
 	private EditText inputText;
@@ -44,74 +41,6 @@ public class MainActivity extends Activity {
 		
 		System.out.println("Test Mac");
 		
-		/*
-		// zoho test
-		Connection con = null;
-		Statement stmt = null;
-		ResultSet rs = null;
-		try {
-			Class.forName("com.zoho.cloudsql.jdbc.ZohoReportsDriver");
-			Properties conProps = new Properties(); 
-            
-			conProps.put("ZOHO_API_KEY","8482375e9dc9494e26dfdfd942dc0425");
-			// Zoho username to login to Zoho service
-			conProps.put("user","kochung");
-			// Zoho password to login to Zoho service
-			conProps.put("password","Honkon83");
-			/* Important Note: Connection is single threaded in Zoho Reports */
-		/*
-			// kochung is the owner of the database 'KeigoDict'
-			con = DriverManager.getConnection("https://reportsapi.zoho.com/" + 
-			"api/kochung/KeigoDict",conProps);
-			stmt = con.createStatement();
-			String sql ="select * from plainList";
-			rs = stmt.executeQuery(sql);
-			
-			//while (rs.next()) {
-		    //    String plain = rs.getString("plain");
-		    //    String plainRomaji = rs.getString("plain_romaji");
-		    //    String vocabType = rs.getString("vocab_type");
-		    //    System.out.println(plain + " " + plainRomaji + " " + vocabType);
-			//}
-			
-			sonkeigo.setText("îCñ±");
-			kenjogo.setText("äÆê¨");
-		}
-		catch(SQLException se) {
-			// handle any errors
-			System.out.println("SQLException: " + se.getMessage());
-			System.out.println("Zoho Reports Error code: " + se.getErrorCode());
-			
-			sonkeigo.setText("SQL Fail");
-			kenjogo.setText("SQL Fail");
-		}
-		catch(Exception e) {
-			// handle the exception
-			System.out.println("Exception: " + e.getMessage());
-			sonkeigo.setText("Fail");
-			kenjogo.setText("Fail");
-		}
-		finally {
-			if(rs != null) {
-				try {
-					rs.close();
-				}
-				catch(SQLException sqlEx) { } // ignore 
-			}
-			if(stmt != null) {
-				try {
-					stmt.close();
-				}
-				catch (SQLException sqlEx) { } // ignore
-			}
-			if(con != null) {
-				try {
-					con.close();
-				}
-				catch (SQLException sqlEx) { } // ignore
-			}
-		}
-		*/
 	}
 	
 	@Override
@@ -120,5 +49,28 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
 	}
+	
+	public static String httpGet(String urlStr) throws IOException {
+		  URL url = new URL(urlStr);
+		  HttpURLConnection conn =
+		      (HttpURLConnection) url.openConnection();
+
+		  if (conn.getResponseCode() != 200) {
+		    throw new IOException(conn.getResponseMessage());
+		  }
+
+		  // Buffer the result into a string
+		  BufferedReader rd = new BufferedReader(
+		      new InputStreamReader(conn.getInputStream()));
+		  StringBuilder sb = new StringBuilder();
+		  String line;
+		  while ((line = rd.readLine()) != null) {
+		    sb.append(line);
+		  }
+		  rd.close();
+
+		  conn.disconnect();
+		  return sb.toString();
+		}
 
 }
