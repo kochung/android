@@ -39,8 +39,8 @@ public class MainActivity extends Activity {
 	    }
 		
 		String inputString = inputText.getText().toString();
-		//sonkeigo.setText(inputString);
-		//kenjogo.setText(inputString);
+		sonkeigo.setText(inputString);
+		kenjogo.setText(inputString);
 		
 		/*
 		// zoho test
@@ -57,7 +57,7 @@ public class MainActivity extends Activity {
 			// Zoho password to login to Zoho service
 			conProps.put("password","Honkon83");
 			/* Important Note: Connection is single threaded in Zoho Reports */
-	
+		/*
 			// kochung is the owner of the database 'KeigoDict'
 			con = DriverManager.getConnection("https://reportsapi.zoho.com/" + 
 			"api/kochung/KeigoDict",conProps);
@@ -74,8 +74,6 @@ public class MainActivity extends Activity {
 			
 			sonkeigo.setText("îCñ±");
 			kenjogo.setText("äÆê¨");
-			
-			*/
 		}
 		catch(SQLException se) {
 			// handle any errors
@@ -111,7 +109,7 @@ public class MainActivity extends Activity {
 				catch (SQLException sqlEx) { } // ignore
 			}
 		}
-
+		*/
 	}
 	
 	@Override
