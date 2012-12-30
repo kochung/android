@@ -42,7 +42,7 @@ public class MainActivity extends Activity {
 		sonkeigo.setText(inputString);
 		kenjogo.setText(inputString);
 		
-		System.out.println("Test");
+		System.out.println("Test Mac");
 		
 		/*
 		// zoho test
