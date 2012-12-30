@@ -42,7 +42,7 @@ public class MainActivity extends Activity {
 		//sonkeigo.setText(inputString);
 		//kenjogo.setText(inputString);
 		
-		
+		/*
 		// zoho test
 		Connection con = null;
 		Statement stmt = null;
@@ -72,8 +72,10 @@ public class MainActivity extends Activity {
 		    //    System.out.println(plain + " " + plainRomaji + " " + vocabType);
 			//}
 			
-			sonkeigo.setText("”C–±");
-			kenjogo.setText("Š®¬");
+			sonkeigo.setText("Ã®CÃ±Â±");
+			kenjogo.setText("Ã¤Ã†ÃªÂ¨");
+			
+			*/
 		}
 		catch(SQLException se) {
 			// handle any errors
