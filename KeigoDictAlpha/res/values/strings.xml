@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">KeigoDict Alpha</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="api_key">8482375e9dc9494e26dfdfd942dc0425</string>
+    <string name="zoho_user_name">kochung</string>
+    <string name="zoho_pwd">Honkon83</string>
+    <string name="zoho_driver">com.zoho.cloudsql.jdbc.ZohoReportsDriver</string>
+    <string name="zoho_db">https://reportsapi.zoho.com/api/kochung/KeigoDict</string>
+    <string name="plain_form">Plain Form</string>
+    <string name="sonkeigo">Sonkeigo</string>
+    <string name="kenjogo">Kenjogo</string>
+    <string name="search">Search</string>
+    <string name="keigo">Keigo</string>
+
+</resources>
