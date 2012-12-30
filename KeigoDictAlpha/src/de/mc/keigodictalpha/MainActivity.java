@@ -42,6 +42,8 @@ public class MainActivity extends Activity {
 		sonkeigo.setText(inputString);
 		kenjogo.setText(inputString);
 		
+		System.out.println("Test");
+		
 		/*
 		// zoho test
 		Connection con = null;
