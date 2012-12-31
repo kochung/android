@@ -12,6 +12,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.InputStream;
 import java.io.BufferedReader;
 
 public class MainActivity extends Activity {
@@ -38,8 +39,15 @@ public class MainActivity extends Activity {
 		String inputString = inputText.getText().toString();
 		sonkeigo.setText(inputString);
 		kenjogo.setText(inputString);
-		
-		System.out.println("Test Mac");
+
+		try {
+			URL url = new URL("https://reportsapi.zoho.com/api/kochung/KeigoDict/plainList?ZOHO_ACTION=EXPORT&ZOHO_OUTPUT_FORMAT=JSON&ZOHO_ERROR_FORMAT=XML&ZOHO_API_KEY=8482375e9dc9494e26dfdfd942dc0425&ZOHO_API_VERSION=1.0");
+			HttpURLConnection con = (HttpURLConnection) url
+					.openConnection();
+			readStream(con.getInputStream());
+		} catch (Exception e) {
+	  		e.printStackTrace();
+	  	}
 		
 	}
 	
@@ -50,27 +58,25 @@ public class MainActivity extends Activity {
 		return true;
 	}
 	
-	public static String httpGet(String urlStr) throws IOException {
-		  URL url = new URL(urlStr);
-		  HttpURLConnection conn =
-		      (HttpURLConnection) url.openConnection();
-
-		  if (conn.getResponseCode() != 200) {
-		    throw new IOException(conn.getResponseMessage());
-		  }
-
-		  // Buffer the result into a string
-		  BufferedReader rd = new BufferedReader(
-		      new InputStreamReader(conn.getInputStream()));
-		  StringBuilder sb = new StringBuilder();
-		  String line;
-		  while ((line = rd.readLine()) != null) {
-		    sb.append(line);
-		  }
-		  rd.close();
-
-		  conn.disconnect();
-		  return sb.toString();
+	private void readStream(InputStream in) {
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new InputStreamReader(in));
+		    String line = "";
+		    while ((line = reader.readLine()) != null) {
+		      System.out.println(line);
+		    }
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (reader != null) {
+				try {
+					reader.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+		        }
+		    }
 		}
-
+	} 
+	
 }
