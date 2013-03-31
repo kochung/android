@@ -44,7 +44,8 @@ public class MainActivity extends Activity {
 		sonkeigo.setText(inputString);
 		kenjogo.setText(inputString);
 		
-		urlQuery = "https://reportsapi.zoho.com/api/kochung/KeigoDict/plainList?ZOHO_ACTION=EXPORT&ZOHO_OUTPUT_FORMAT=JSON&ZOHO_ERROR_FORMAT=XML&ZOHO_API_KEY=8482375e9dc9494e26dfdfd942dc0425&ZOHO_API_VERSION=1.0";
+		//urlQuery = "https://reportsapi.zoho.com/api/kochung/KeigoDict/plainList?ZOHO_ACTION=EXPORT&ZOHO_OUTPUT_FORMAT=JSON&ZOHO_ERROR_FORMAT=XML&ZOHO_API_KEY=8482375e9dc9494e26dfdfd942dc0425&ZOHO_API_VERSION=1.0";
+		urlQuery = "https://reportsapi.zoho.com/api/kochung/KeigoDict/plainList?ZOHO_ACTION=EXPORT&ZOHO_OUTPUT_FORMAT=JSON&ZOHO_ERROR_FORMAT=XML&ZOHO_API_KEY=8482375e9dc9494e26dfdfd942dc0425&ZOHO_API_VERSION=1.0&ZOHO_SQLQUERY=select%20%20plain%20from%20plainList%20where%20plain_romaji%20%3D%20%27miru%27";
 		try {
 			URL url = new URL(urlQuery);
 			HttpURLConnection con = (HttpURLConnection) url
@@ -54,8 +55,8 @@ public class MainActivity extends Activity {
 			InputStream source = con.getInputStream();
 			Gson gson = new Gson();
 			Reader reader = new InputStreamReader(source);
-			//gson.fromJson(reader, );
-			
+			ZohoResponse zohoResponse = gson.fromJson(reader, ZohoResponse.class);
+			System.out.println(zohoResponse.action);
 		} catch (Exception e) {
 	  		e.printStackTrace();
 	  	}
