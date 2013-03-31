@@ -50,13 +50,15 @@ public class MainActivity extends Activity {
 			URL url = new URL(urlQuery);
 			HttpURLConnection con = (HttpURLConnection) url
 					.openConnection();
-			//readStream(con.getInputStream());
+			readStream(con.getInputStream());
 			
+			/*
 			InputStream source = con.getInputStream();
 			Gson gson = new Gson();
 			Reader reader = new InputStreamReader(source);
 			ZohoResponse zohoResponse = gson.fromJson(reader, ZohoResponse.class);
 			System.out.println(zohoResponse.action);
+			*/
 		} catch (Exception e) {
 	  		e.printStackTrace();
 	  	}
